@@ -9,7 +9,109 @@
  Text Domain:  flatsome-child
 */
 
-/* ============================================
-   KRESKI — Customowe style
-   Kolory: #e30613 (czerwień), #1a1a1a (czerń)
-   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Barlow+Condensed:wght@600;700;800&display=swap');
+
+/* ── ZMIENNE GLOBALNE ── */
+:root {
+  --clr-red:    #e30613;
+  --clr-dark:   #1a1a1a;
+  --clr-gray:   #666666;
+  --clr-light:  #f8f8f8;
+  --clr-border: #eeeeee;
+  --font-main:  'Barlow', sans-serif;
+  --font-cond:  'Barlow Condensed', sans-serif;
+}
+
+/* ── TYPOGRAFIA ── */
+body,
+.is-root-container {
+  font-family: var(--font-main);
+  font-size: 15px;
+  color: var(--clr-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4 {
+  font-family: var(--font-main);
+  font-weight: 700;
+  color: var(--clr-dark);
+  line-height: 1.25;
+}
+
+/* ── FLATSOME — KOLORY AKCENTU ── */
+a { color: var(--clr-red); }
+a:hover { color: #b8000f; }
+
+/* Główny kolor przycisków */
+.button,
+.button.primary,
+button[type="submit"],
+input[type="submit"],
+.woocommerce #respond input#submit,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button {
+  background-color: var(--clr-red) !important;
+  border-color: var(--clr-red) !important;
+  font-family: var(--font-main) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  border-radius: 0 !important;
+  transition: background-color .2s, color .2s, border-color .2s !important;
+}
+
+.button:hover,
+.button.primary:hover,
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  background-color: #fff !important;
+  color: var(--clr-red) !important;
+  border-color: var(--clr-red) !important;
+}
+
+/* Przycisk outline */
+.button.outline {
+  background-color: transparent !important;
+  color: var(--clr-red) !important;
+  border: 2px solid var(--clr-red) !important;
+}
+.button.outline:hover {
+  background-color: var(--clr-red) !important;
+  color: #fff !important;
+}
+
+/* ── FLATSOME — HEADER ── */
+#header {
+  font-family: var(--font-main);
+}
+
+/* ── FLATSOME — NAV ── */
+.nav > li > a {
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+/* Aktywny/hover item w nav */
+.nav > li > a:hover,
+.nav > li.active > a {
+  color: var(--clr-red) !important;
+}
+
+/* Kreska pod aktywnym itemem */
+.nav > li.active > a::after,
+.nav > li > a:hover::after {
+  background-color: var(--clr-red);
+}
+
+/* ── SEKCJE — OGÓLNE ODSTĘPY ── */
+.section {
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
+/* ── USUNIĘCIE PODKREŚLEŃ ── */
+a { text-decoration: none !important; }
+
