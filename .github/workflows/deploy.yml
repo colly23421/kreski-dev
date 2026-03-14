@@ -22,8 +22,6 @@ jobs:
           port: 21
           local-dir: ./wp-content/themes/flatsome-child/
           server-dir: ./wp-content/themes/flatsome-child/
-          state-name: .ftp-deploy-sync-state.json
-          dangerous-clean-slate: true
           exclude: |
             **/.git*
             **/.git*/**
