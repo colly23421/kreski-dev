@@ -21,7 +21,7 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./
-          server-dir: /dev.kreski.pl/
+          server-dir: /dev/
           exclude: |
             **/.git*
             **/.git*/**
