@@ -12,18 +12,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          local-dir: ./
-          server-dir: /dev/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            .github/**
-            README.md
+          port: 22
+          local_path: './*'
+          remote_path: /dev/
+          sftp_only: true
+          args: '-o StrictHostKeyChecking=no'
