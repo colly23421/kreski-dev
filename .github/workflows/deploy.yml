@@ -12,14 +12,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy via SFTP
+      - name: Deploy child theme via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 22
-          local_path: './*'
-          remote_path: ./
+          local_path: './wp-content/themes/flatsome-child/*'
+          remote_path: ./wp-content/themes/flatsome-child/
           sftp_only: true
           args: '-o StrictHostKeyChecking=no'
