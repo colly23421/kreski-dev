@@ -70,3 +70,4 @@ add_action('init', function() {
     // Oznacz jako wykonane
     update_option('kreski_setup_done', '1');
 }, 20);
+// Sat Mar 14 23:52:15 UTC 2026
