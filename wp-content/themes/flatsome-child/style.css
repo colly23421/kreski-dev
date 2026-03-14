@@ -86,32 +86,144 @@ input[type="submit"]:hover {
   font-family: var(--font-main);
 }
 
-/* ── FLATSOME — NAV ── */
-.nav > li > a {
+/* ── TOPBAR ── */
+#top-bar {
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
   font-family: var(--font-main);
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.02em;
+  font-size: 12px;
 }
-
-/* Aktywny/hover item w nav */
-.nav > li > a:hover,
-.nav > li.active > a {
+#top-bar .flex-row {
+  min-height: 36px;
+}
+#top-bar a {
+  color: #555 !important;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+#top-bar a:hover {
   color: var(--clr-red) !important;
 }
 
-/* Kreska pod aktywnym itemem */
-.nav > li.active > a::after,
-.nav > li > a:hover::after {
-  background-color: var(--clr-red);
+/* Social ikony w topbarze */
+.social-icons a {
+  color: #888 !important;
+  font-size: 13px !important;
+}
+.social-icons a:hover {
+  color: var(--clr-red) !important;
 }
 
-/* ── SEKCJE — OGÓLNE ODSTĘPY ── */
-.section {
-  padding-top: 72px;
-  padding-bottom: 72px;
+/* ── HEADER GŁÓWNY ── */
+#header {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+#header .header-inner {
+  min-height: 74px;
 }
 
-/* ── USUNIĘCIE PODKREŚLEŃ ── */
-a { text-decoration: none !important; }
+/* Logo */
+#logo img {
+  max-height: 44px !important;
+  width: auto;
+}
+
+/* Telefon w headerze */
+.header-tel {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--clr-red) !important;
+  letter-spacing: .3px;
+  white-space: nowrap;
+  text-decoration: none !important;
+}
+.header-tel:hover {
+  color: #b8000f !important;
+}
+
+/* ── NAWIGACJA GŁÓWNA ── */
+.nav > li > a {
+  font-family: var(--font-main) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #222 !important;
+  letter-spacing: .3px;
+  padding: 0 16px !important;
+  height: 74px;
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.nav > li > a:hover,
+.nav > li.active > a,
+.nav > li.current-menu-item > a {
+  color: var(--clr-red) !important;
+  border-bottom-color: var(--clr-red) !important;
+}
+.nav > li {
+  border-left: 1px solid #f2f2f2;
+}
+.nav > li:first-child {
+  border-left: none;
+}
+
+/* Strzałka dropdown */
+.nav .nav-dropdown-btn {
+  font-size: 8px;
+  color: #aaa;
+  margin-left: 3px;
+}
+
+/* ── MEGA MENU ── */
+.nav .dropdown-menu,
+.nav .sub-menu {
+  border-top: 3px solid var(--clr-red) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,.12) !important;
+  font-family: var(--font-main);
+}
+
+.nav .sub-menu li a {
+  font-size: 12.5px !important;
+  color: #333 !important;
+  font-weight: 400 !important;
+  padding: 7px 18px !important;
+  transition: color .1s, padding-left .1s;
+}
+.nav .sub-menu li a:hover {
+  color: var(--clr-red) !important;
+  padding-left: 24px !important;
+  background: #f8f8f8 !important;
+}
+
+/* ── MOBILE HAMBURGER ── */
+.nav-toggle {
+  color: var(--clr-dark) !important;
+}
+.nav-toggle:hover {
+  color: var(--clr-red) !important;
+}
+
+/* Mobile menu */
+#mobile-menu {
+  font-family: var(--font-main);
+  border-top: 3px solid var(--clr-red);
+}
+#mobile-menu li a {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #222 !important;
+  border-bottom: 1px solid #f2f2f2 !important;
+  padding: 13px 20px !important;
+}
+#mobile-menu li a:hover {
+  color: var(--clr-red) !important;
+  background: #fff5f5 !important;
+}
 
