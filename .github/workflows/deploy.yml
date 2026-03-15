@@ -23,7 +23,7 @@ jobs:
           open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
           mirror --reverse --delete --verbose \
             ./wp-content/themes/flatsome-child/ \
-            ./wp-content/themes/flatsome-child/;
+            ./dev.kreski.pl/wp-content/themes/flatsome-child/;
           bye
           "
 
