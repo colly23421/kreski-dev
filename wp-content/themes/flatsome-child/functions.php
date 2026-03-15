@@ -7,7 +7,7 @@ add_action( 'wp_enqueue_scripts', 'flatsome_child_enqueue_styles' );
 function flatsome_child_enqueue_styles() {
     wp_enqueue_style( 'flatsome-parent-style', get_template_directory_uri() . '/style.css' );
     wp_enqueue_style( 'flatsome-child-style', get_stylesheet_directory_uri() . '/style.css', array( 'flatsome-parent-style' ), filemtime( get_stylesheet_directory() . '/style.css' ) );
-    wp_enqueue_style( 'kreski-fonts', 'https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap', array(), null );
+    wp_enqueue_style( 'kreski-fonts', 'https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap', array(), null );
 }
 
 add_action( 'wp_head', 'kreski_preconnect_fonts', 1 );
@@ -15,6 +15,53 @@ function kreski_preconnect_fonts() {
     echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
     echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
 }
+
+add_action( 'after_setup_theme', 'kreski_setup', 99 );
+function kreski_setup() {
+    if ( get_option( 'kreski_setup_v4' ) ) return;
+
+    $mods = array(
+        'top_bar'              => '1',
+        'top_bar_text'         => '<a href="tel:+48226662240">&#9990; 22 666 22 40</a> &nbsp;&bull;&nbsp; <a href="mailto:kreski@kreski.pl">&#9993; kreski@kreski.pl</a>',
+        'top_bar_right'        => 'social',
+        'header_height'        => '74',
+        'header_sticky'        => '1',
+        'header_cart'          => '0',
+        'header_account'       => '0',
+        'button_radius'        => '0',
+        'social_facebook'      => 'https://www.facebook.com/kreskipl',
+        'social_linkedin'      => 'https://www.linkedin.com/company/kreski',
+    );
+    foreach ( $mods as $key => $value ) {
+        set_theme_mod( $key, $value );
+    }
+
+    $menu_id = wp_create_nav_menu( 'Menu Kreski' );
+    if ( ! is_wp_error( $menu_id ) ) {
+        foreach ( array(
+            array( 'Produkty', '/produkty/' ),
+            array( 'Usługi', '/uslugi/' ),
+            array( 'Serwis', '/serwis/' ),
+            array( 'Centrum wiedzy', '/centrum-wiedzy/' ),
+            array( 'O firmie', '/o-firmie/' ),
+            array( 'Kontakt', '/kontakt/' ),
+        ) as $item ) {
+            wp_update_nav_menu_item( $menu_id, 0, array(
+                'menu-item-title'  => $item[0],
+                'menu-item-url'    => home_url( $item[1] ),
+                'menu-item-status' => 'publish',
+            ) );
+        }
+        $locs = get_theme_mod( 'nav_menu_locations', array() );
+        $locs['primary'] = $menu_id;
+        $locs['handheld'] = $menu_id;
+        set_theme_mod( 'nav_menu_locations', $locs );
+    }
+
+    update_option( 'blogname', 'Kreski' );
+    update_option( 'kreski_setup_v4', '1' );
+}
+
 
 // Jednorazowy setup — uruchamia się tylko raz
 add_action( 'init', 'kreski_one_time_setup', 20 );
