@@ -12,32 +12,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy child theme via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
-          port: 21
-          local-dir: ./wp-content/themes/flatsome-child/
-          server-dir: ./wp-content/themes/flatsome-child/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            .github/**
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
 
-      - name: Deploy mu-plugins via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
-          port: 21
-          local-dir: ./wp-content/mu-plugins/
-          server-dir: ./wp-content/mu-plugins/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            .github/**
+      - name: Deploy via lftp
+        run: |
+          lftp -c "
+          set ftp:ssl-allow no;
+          set net:timeout 30;
+          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
+          mirror --reverse --delete --verbose \
+            ./wp-content/themes/flatsome-child/ \
+            ./wp-content/themes/flatsome-child/;
+          bye
+          "
+
