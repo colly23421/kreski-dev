@@ -19,7 +19,7 @@ function kreski_preconnect_fonts() {
 // Jednorazowy setup — uruchamia się tylko raz
 add_action( 'init', 'kreski_one_time_setup', 20 );
 function kreski_one_time_setup() {
-    if ( get_option( 'kreski_setup_v2' ) ) return;
+    if ( get_option( 'kreski_setup_v3' ) ) return;
 
     // Flatsome theme mods
     $mods = array(
@@ -75,5 +75,5 @@ function kreski_one_time_setup() {
     update_option( 'permalink_structure', '/%postname%/' );
     flush_rewrite_rules();
 
-    update_option( 'kreski_setup_v2', '1' );
+    update_option( 'kreski_setup_v3', '1' );
 }
